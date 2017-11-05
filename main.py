@@ -5,7 +5,7 @@ pygame.display.set_caption('Kanji - Cardgame')
 screen = pygame.display.set_mode((795, 411))
 done = False
 
-font = pygame.font.Font("/fonts/Kengo.ttf", 42)
+font = pygame.font.Font("/Fonts/Kengo.ttf", 42)
 
 #font = pygame.font.SysFont("monospace", 42)
 

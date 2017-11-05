@@ -8,7 +8,7 @@ done = False
 
 fontKanji = pygame.font.Font("./Fonts/Kengo.ttf", 62)
 fontCardgame = pygame.font.Font("./Fonts/Kengo.ttf", 32)
-fontItens = pygame.font.Font("./Fonts/Kengo.ttf", 20)
+fontItens = pygame.font.SysFont("monospace", 20)
 
 kanjiName = fontKanji.render("Kanji", 1, (255,69,0))
 cardgameName = fontCardgame.render("Cardgame", 1, (255,215,0))

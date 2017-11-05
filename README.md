@@ -1,1 +1,2 @@
-# Kanji_Cardgame
+# Kanji - Cardgame
+A game to learn Kanjis

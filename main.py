@@ -32,8 +32,8 @@ kanjiKanji = pygame.image.load('./Kanjis/kanji.png')
 screen.blit(kanjiKanji, (450, 225))
 
 def navigateItem():
-	jogarName = fontItens.render("Play", 1, (255,255,255))
-	instrucoesName = fontItens.render("Tutorial", 1, (255,255,255))
+    jogarName = fontItens.render("Play", 1, (255,255,255))
+    instrucoesName = fontItens.render("Tutorial", 1, (255,255,255))
     configuracoesName = fontItens.render("Settings", 1, (255,255,255))
     sobreName = fontItens.render("About", 1, (255,255,255))
     sairName = fontItens.render("Exit", 1, (255,255,255))

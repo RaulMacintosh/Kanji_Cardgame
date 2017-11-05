@@ -13,7 +13,7 @@ cardgameName = fontCardgame.render("Cardgame", 1, (255,255,255))
 screen.blit(kanjiName, (325, 50))
 screen.blit(cardgameName, (315, 125))
 
-kanjiKanji = pygame.image.load('/Kanjis/kanji.png')
+kanjiKanji = pygame.image.load('./Kanjis/kanji.png')
 screen.blit(kanjiKanji, (400, 200))
 
 while not done:

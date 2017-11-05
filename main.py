@@ -8,12 +8,13 @@ done = False
 fontKanji = pygame.font.Font("./Fonts/Kengo.ttf", 62)
 fontCardgame = pygame.font.Font("./Fonts/Kengo.ttf", 32)
 
-#font = pygame.font.SysFont("monospace", 42)
+kanjiName = fontKanji.render("Kanji", 1, (255,255,255))
+cardgameName = fontCardgame.render("Cardgame", 1, (255,255,255))
+screen.blit(kanjiName, (325, 50))
+screen.blit(cardgameName, (315, 125))
 
-kanji = fontKanji.render("Kanji", 1, (255,255,255))
-cardgame = fontCardgame.render("Cardgame", 1, (255,255,255))
-screen.blit(kanji, (325, 50))
-screen.blit(cardgame, (315, 125))
+kanjiKanji = pygame.image.load('/Kanjis/kanji.png')
+screen.blit(kanjiKanji, (400, 200))
 
 while not done:
     for event in pygame.event.get():

@@ -8,7 +8,7 @@ done = False
 
 fontKanji = pygame.font.Font("./Fonts/Kengo.ttf", 62)
 fontCardgame = pygame.font.Font("./Fonts/Kengo.ttf", 32)
-fontItens = pygame.font.SysFont("monospace", 20)
+fontItens = pygame.font.SysFont("monospace", 25)
 
 kanjiName = fontKanji.render("Kanji", 1, (255,69,0))
 cardgameName = fontCardgame.render("Cardgame", 1, (255,215,0))
@@ -20,11 +20,11 @@ sairName = fontItens.render("Sair", 1, (255,255,255))
 
 screen.blit(kanjiName, (325, 50))
 screen.blit(cardgameName, (315, 125))
-screen.blit(jogarName, (10, 300))
-screen.blit(instrucoesName, (10, 310))
-screen.blit(configuracoesName, (10, 320))
-screen.blit(sobreName, (10, 330))
-screen.blit(sairName, (10, 340))
+screen.blit(jogarName, (20, 250))
+screen.blit(instrucoesName, (20, 270))
+screen.blit(configuracoesName, (20, 290))
+screen.blit(sobreName, (20, 310))
+screen.blit(sairName, (20, 330))
 
 kanjiKanji = pygame.image.load('./Kanjis/kanji.png')
 screen.blit(kanjiKanji, (450, 225))

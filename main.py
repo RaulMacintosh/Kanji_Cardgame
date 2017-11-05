@@ -8,7 +8,7 @@ done = False
 font = pygame.font.SysFont("monospace", 15)
 
 gameName = font.render("Kanji Cardgame", 12, (255,255,255))
-screen.blit(label, (400, 100))
+screen.blit(gameName, (400, 100))
 
 while not done:
     for event in pygame.event.get():

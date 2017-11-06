@@ -1,11 +1,10 @@
 import pygame
+from settingsMenu import *
 
 class Menu:
 	def __init__(self, screen):
 		self.screen = screen
 		self.surface = pygame.Surface((795, 411))
-		self.surface.fill((0,0,0))
-		self.screen.blit(self.surface, [0,0])
 
 		self.currtentItem = 1
 
@@ -21,6 +20,8 @@ class Menu:
 		self.sobreName = self.fontItens.render("About", 1, (255,255,255))
 		self.sairName = self.fontItens.render("Exit", 1, (255,255,255))
 		self.kanjiKanji = pygame.image.load('./Kanjis/kanji.png')
+
+		self.settingsMenu = Settings(screen)
 
 	def draw(self):
 		self.surface.fill((0,0,0))
@@ -84,13 +85,26 @@ class Menu:
 			self.draw()
 
 	def selectItem(self):
-		if self.currtentItem == 1:
-			self.jogarName = self.fontItens.render("Play", 1, (0,100,0))
+		if self.currtentItem == 3:
+			self.settingsMenu.draw()
+			done = False
+			while not done:
+				for event in pygame.event.get():
+					if event.type == pygame.KEYDOWN:
+						if event.key == pygame.K_UP:
+							self.settingsMenu.itemUp()
+						if event.key == pygame.K_DOWN:
+							self.settingsMenu.itemDown()
+						if event.key == pygame.K_RETURN:
+							done = self.settingsMenu.selectItem()
+
+				pygame.display.flip()
+			self.draw()
 		# elif self.currtentItem == 2:
 		# 	self.instrucoesName = self.fontItens.render("Tutorial", 1, (0,100,0))
 		# elif self.currtentItem == 3:
 		# 	self.configuracoesName = self.fontItens.render("Settings", 1, (0,100,0))
 		# elif self.currtentItem == 4:
 		# 	self.sobreName = self.fontItens.render("About", 1, (0,100,0))
-		# elif self.currtentItem == 5:
-		# 	self.sairName = self.fontItens.render("Exit", 1, (0,100,0))
+		elif self.currtentItem == 5:
+			return True

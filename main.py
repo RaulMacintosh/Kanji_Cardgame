@@ -19,8 +19,6 @@ while not done:
 			if event.key == pygame.K_DOWN:
 				menu.itemDown()
 			if event.key == pygame.K_RETURN:
-				menu.selectItem()
-		if event.type == pygame.QUIT:
-			done = True
+				done = menu.selectItem()
     
 	pygame.display.flip()

@@ -1,5 +1,6 @@
 import pygame
 from settingsMenu import *
+from karutaGame import *
 
 class Play:
 	def __init__(self, screen, settingsMenu):
@@ -17,6 +18,8 @@ class Play:
 		self.portugueseName = self.fontItens.render("Portuguese", 1, (255,255,255))
 		self.japaneseName = self.fontItens.render("Japanese", 1, (255,255,255))
 		self.backName = self.fontItens.render("Back", 1, (255,255,255))
+
+		self.karuta = Karuta(self.screen, self.settingsMenu)
 
 	def draw(self):
 		self.surface.fill((0,0,0))
@@ -69,5 +72,8 @@ class Play:
 			self.draw()
 
 	def selectItem(self):
-		if self.currtentItem == 4:
+		if self.currtentItem == 1:
+			self.karuta.start()
+			self.draw()
+		elif self.currtentItem == 4:
 			return True

@@ -23,9 +23,9 @@ class Menu:
 		self.sairName = self.fontItens.render("Exit", 1, (255,255,255))
 		self.kanjiKanji = pygame.image.load('./Images/kanji.png')
 
-		self.settingsMenu = Settings(screen)
-		self.tutorialMenu = Tutorial(screen)
-		self.playMenu = Play(screen, self.settingsMenu)
+		self.settingsMenu = Settings(self.screen)
+		self.tutorialMenu = Tutorial(self.screen)
+		self.playMenu = Play(self.screen, self.settingsMenu)
 
 	def draw(self):
 		self.surface.fill((0,0,0))

@@ -95,6 +95,10 @@ class Menu:
 							self.settingsMenu.itemUp()
 						if event.key == pygame.K_DOWN:
 							self.settingsMenu.itemDown()
+						if event.key == pygame.K_LEFT:
+							done = self.settingsMenu.itemLeft()
+						if event.key == pygame.K_RIGHT:
+							done = self.settingsMenu.itemRight()
 						if event.key == pygame.K_RETURN:
 							done = self.settingsMenu.selectItem()
 

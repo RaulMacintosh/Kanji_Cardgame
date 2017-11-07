@@ -10,6 +10,8 @@ class Settings:
 		self.easyRadio = unichr(0x25C9)
 		self.normalRadio = unichr(0x25CB)
 		self.hardRadio = unichr(0x25CB)
+		self.timeValue = 5
+		self.radioCurrentSelected = 1
 
 		self.currtentItem = 1
 
@@ -26,7 +28,9 @@ class Settings:
 		self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (255,255,255))
 		self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (255,255,255))
 
-		self.timeName = self.fontItens.render("Time to find the Kanji: ", 1, (255,255,255))
+		self.timeName = self.fontItens.render("Time to find the Kanji: -    +", 1, (255,255,255))
+		self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (255,255,255))
+
 		self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
 	def draw(self):
@@ -39,10 +43,122 @@ class Settings:
 		self.screen.blit(self.soundBarName, (250, 200))
 
 		self.screen.blit(self.levelName, (30, 230))
+		self.screen.blit(self.easyRadioName, (300, 230))
+		self.screen.blit(self.normalRadioName, (420, 230))
+		self.screen.blit(self.hardRadioName, (570, 230))
 
-		
 		self.screen.blit(self.timeName, (30, 260))
+		self.screen.blit(self.secondsName, (420, 260))
+
 		self.screen.blit(self.backName, (700, 350))
+
+	def soundLeft(self):
+		for x in range(0,10):
+			char = self.soundBar[x]
+
+			if x > 0 and char == unichr(0x25AF):
+				self.soundBar = self.soundBar[:x-1] + unichr(0x25AF) + self.soundBar[x:]
+				break
+			if x == 9:
+				self.soundBar = self.soundBar[:x] + unichr(0x25AF)
+
+		self.draw()
+
+	def soundRight(self):
+		for x in range(0,10):
+			char = self.soundBar[x]
+
+			if x < 10 and char == unichr(0x25AF):
+				self.soundBar = self.soundBar[:x] + unichr(0x25AE) + self.soundBar[x+1:]
+				break
+			if x == 0 and char == unichr(0x25AF):
+				self.soundBar[x] = unichr(0x25AE)
+
+		self.draw()
+
+	def radioLeft(self):
+		self.easyRadio = unichr(0x25CB)
+		self.normalRadio = unichr(0x25CB)
+		self.hardRadio = unichr(0x25CB)
+		self.easyRadioName = self.fontItens.render(self.easyRadio, 1, (255,255,255))
+		self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (255,255,255))
+		self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (255,255,255))
+
+		if self.radioCurrentSelected == 1:
+			self.easyRadio = unichr(0x25C9)
+			self.easyRadioName = self.fontItens.render(self.easyRadio, 1, (0,100,0))
+		elif self.radioCurrentSelected == 2:
+			self.easyRadio = unichr(0x25C9)
+			self.normalRadio = unichr(0x25CB)
+			self.radioCurrentSelected -= 1
+			self.easyRadioName = self.fontItens.render(self.easyRadio, 1, (0,100,0))
+		elif self.radioCurrentSelected == 3:
+			self.normalRadio = unichr(0x25C9)
+			self.hardRadio = unichr(0x25CB)
+			self.radioCurrentSelected -= 1
+			self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (0,100,0))
+
+		self.draw()
+
+	def radioRight(self):
+		self.easyRadio = unichr(0x25CB)
+		self.normalRadio = unichr(0x25CB)
+		self.hardRadio = unichr(0x25CB)
+		self.easyRadioName = self.fontItens.render(self.easyRadio, 1, (255,255,255))
+		self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (255,255,255))
+		self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (255,255,255))
+
+		if self.radioCurrentSelected == 1:
+			self.easyRadio = unichr(0x25CB)
+			self.normalRadio = unichr(0x25C9)
+			self.radioCurrentSelected += 1
+			self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (0,100,0))
+		elif self.radioCurrentSelected == 2:
+			self.normalRadio = unichr(0x25CB)
+			self.hardRadio = unichr(0x25C9)
+			self.radioCurrentSelected += 1
+			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (0,100,0))
+		elif self.radioCurrentSelected == 3:
+			self.hardRadio = unichr(0x25C9)
+			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (0,100,0))
+
+		self.draw()
+
+	def timeLeft(self):
+		if self.timeValue == 5:
+			pass
+		else:
+			self.timeValue -= 1
+
+	def timeRight(self):
+		if self.timeValue == 30:
+			pass
+		else:
+			self.timeValue += 1
+
+	def itemLeft(self):
+		if self.currtentItem == 1:
+			self.soundLeft()
+			self.soundBarName = self.fontItens.render(self.soundBar, 1, (0,100,0))
+		elif self.currtentItem == 2:
+			self.radioLeft()
+		elif self.currtentItem == 3:
+			self.timeLeft()
+			self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
+
+		self.draw()
+
+	def itemRight(self):
+		if self.currtentItem == 1:
+			self.soundRight()
+			self.soundBarName = self.fontItens.render(self.soundBar, 1, (0,100,0))
+		elif self.currtentItem == 2:
+			self.radioRight()
+		elif self.currtentItem == 3:
+			self.timeRight()
+			self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
+		
+		self.draw()
 
 	def itemUp(self):
 		if self.currtentItem == 1:
@@ -51,17 +167,28 @@ class Settings:
 			self.currtentItem -= 1
 			self.soundName = self.fontItens.render("Sound Level: -            +", 1, (255,255,255))
 			self.soundBarName = self.fontItens.render(self.soundBar, 1, (255,255,255))
-			self.levelName = self.fontItens.render("Difficulty Level: ", 1, (255,255,255))
-			self.timeName = self.fontItens.render("Time to find the Kanji: ", 1, (255,255,255))
+			
+			self.levelName = self.fontItens.render("Difficulty Level:   Easy    Normal    Hard", 1, (255,255,255))
+			self.easyRadioName = self.fontItens.render(self.easyRadio, 1, (255,255,255))
+			self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (255,255,255))
+			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (255,255,255))
+
+			self.timeName = self.fontItens.render("Time to find the Kanji: -    +", 1, (255,255,255))
+			self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (255,255,255))
+
 			self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
 			if self.currtentItem == 1:
-				self.soundName = self.fontItens.render("Sound Level: -            +", 1, (255,255,255))
 				self.soundBarName = self.fontItens.render(self.soundBar, 1, (0,100,0))
 			elif self.currtentItem == 2:
-				self.levelName = self.fontItens.render("Difficulty Level: ", 1, (0,100,0))
+				if self.radioCurrentSelected == 1 or self.radioCurrentSelected == 2:
+					self.radioCurrentSelected += 1
+					self.radioLeft()
+				else:
+					self.radioCurrentSelected -= 1
+					self.radioRight()
 			elif self.currtentItem == 3:
-				self.timeName = self.fontItens.render("Time to find the Kanji: ", 1, (0,100,0))
+				self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
 
@@ -74,17 +201,29 @@ class Settings:
 			self.currtentItem += 1
 			self.soundName = self.fontItens.render("Sound Level: -            +", 1, (255,255,255))
 			self.soundBarName = self.fontItens.render(self.soundBar, 1, (255,255,255))
-			self.levelName = self.fontItens.render("Difficulty Level: ", 1, (255,255,255))
-			self.timeName = self.fontItens.render("Time to find the Kanji: ", 1, (255,255,255))
+			
+			self.levelName = self.fontItens.render("Difficulty Level:   Easy    Normal    Hard", 1, (255,255,255))
+			self.easyRadioName = self.fontItens.render(self.easyRadio, 1, (255,255,255))
+			self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (255,255,255))
+			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (255,255,255))
+
+			self.timeName = self.fontItens.render("Time to find the Kanji: -    +", 1, (255,255,255))
+			self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (255,255,255))
+
 			self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
 			if self.currtentItem == 1:
 				self.soundName = self.fontItens.render("Sound Level: -            +", 1, (255,255,255))
 				self.soundBarName = self.fontItens.render(self.soundBar, 1, (0,100,0))
 			elif self.currtentItem == 2:
-				self.levelName = self.fontItens.render("Difficulty Level: ", 1, (0,100,0))
+				if self.radioCurrentSelected == 1 or self.radioCurrentSelected == 2:
+					self.radioCurrentSelected += 1
+					self.radioLeft()
+				else:
+					self.radioCurrentSelected -= 1
+					self.radioRight()
 			elif self.currtentItem == 3:
-				self.timeName = self.fontItens.render("Time to find the Kanji: ", 1, (0,100,0))
+				self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
 

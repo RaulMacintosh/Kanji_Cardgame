@@ -1,5 +1,4 @@
 import pygame
-from mainMenu import *
 
 class Settings:
 	def __init__(self, screen):

@@ -1,5 +1,6 @@
 import pygame
 from settingsMenu import *
+from tutorialMenu import *
 
 class Menu:
 	def __init__(self, screen):
@@ -22,6 +23,7 @@ class Menu:
 		self.kanjiKanji = pygame.image.load('./Kanjis/kanji.png')
 
 		self.settingsMenu = Settings(screen)
+		self.tutorialMenu = Tutorial(screen)
 
 	def draw(self):
 		self.surface.fill((0,0,0))
@@ -104,8 +106,17 @@ class Menu:
 
 				pygame.display.flip()
 			self.draw()
-		# elif self.currtentItem == 2:
-		# 	self.instrucoesName = self.fontItens.render("Tutorial", 1, (0,100,0))
+		elif self.currtentItem == 2:
+			self.tutorialMenu.draw()
+			done = False
+			while not done:
+				for event in pygame.event.get():
+					if event.type == pygame.KEYDOWN:
+						if event.key == pygame.K_RETURN:
+							done = True
+
+				pygame.display.flip()
+			self.draw()
 		# elif self.currtentItem == 3:
 		# 	self.configuracoesName = self.fontItens.render("Settings", 1, (0,100,0))
 		# elif self.currtentItem == 4:

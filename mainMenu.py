@@ -1,6 +1,7 @@
 import pygame
 from settingsMenu import *
 from tutorialMenu import *
+from playMenu import *
 
 class Menu:
 	def __init__(self, screen):
@@ -20,10 +21,11 @@ class Menu:
 		self.configuracoesName = self.fontItens.render("Settings", 1, (255,255,255))
 		self.sobreName = self.fontItens.render("About", 1, (255,255,255))
 		self.sairName = self.fontItens.render("Exit", 1, (255,255,255))
-		self.kanjiKanji = pygame.image.load('./Kanjis/kanji.png')
+		self.kanjiKanji = pygame.image.load('./Images/kanji.png')
 
 		self.settingsMenu = Settings(screen)
 		self.tutorialMenu = Tutorial(screen)
+		self.playMenu = Play(screen, self.settingsMenu)
 
 	def draw(self):
 		self.surface.fill((0,0,0))
@@ -87,7 +89,33 @@ class Menu:
 			self.draw()
 
 	def selectItem(self):
-		if self.currtentItem == 3:
+		if self.currtentItem == 1:
+		 	self.playMenu.draw()
+		 	done = False
+		 	while not done:
+				for event in pygame.event.get():
+					if event.type == pygame.KEYDOWN:
+						if event.key == pygame.K_UP:
+							self.playMenu.itemUp()
+						if event.key == pygame.K_DOWN:
+							self.playMenu.itemDown()
+						if event.key == pygame.K_RETURN:
+							done = self.playMenu.selectItem()
+
+				pygame.display.flip()
+			self.draw()
+		elif self.currtentItem == 2:
+			self.tutorialMenu.draw()
+			done = False
+			while not done:
+				for event in pygame.event.get():
+					if event.type == pygame.KEYDOWN:
+						if event.key == pygame.K_RETURN:
+							done = True
+
+				pygame.display.flip()
+			self.draw()
+		elif self.currtentItem == 3:
 			self.settingsMenu.draw()
 			done = False
 			while not done:
@@ -106,19 +134,6 @@ class Menu:
 
 				pygame.display.flip()
 			self.draw()
-		elif self.currtentItem == 2:
-			self.tutorialMenu.draw()
-			done = False
-			while not done:
-				for event in pygame.event.get():
-					if event.type == pygame.KEYDOWN:
-						if event.key == pygame.K_RETURN:
-							done = True
-
-				pygame.display.flip()
-			self.draw()
-		# elif self.currtentItem == 3:
-		# 	self.configuracoesName = self.fontItens.render("Settings", 1, (0,100,0))
 		# elif self.currtentItem == 4:
 		# 	self.sobreName = self.fontItens.render("About", 1, (0,100,0))
 		elif self.currtentItem == 5:

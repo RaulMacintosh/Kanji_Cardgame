@@ -1,6 +1,40 @@
 import pygame
 import time
+from threading import Thread
 from settingsMenu import *
+
+counter = 5
+
+class Timer(Thread):
+	def __init__(self, num, screen):
+		Thread.__init__(self)
+		self.num = num
+		self.screen = screen
+		self.surface = pygame.Surface((795, 411))
+
+		self.fontDescription = pygame.font.SysFont("monospace", 25)
+
+	def run(self):
+		global counter
+		while counter >= 0:
+			self.draw()
+			time.sleep(1)
+			counter -= 1
+
+
+	def draw(self):
+		self.surface.fill((0,0,0))
+		self.screen.blit(self.surface, [0,0])
+		
+		self.heart = pygame.image.load('./Images/heart.png')
+		self.kanjiName = self.fontDescription.render("AMOR", 1, (255,255,255))
+		self.screen.blit(self.kanjiName, (350, 100))
+		self.screen.blit(self.heart, (500, 50))
+
+		self.secondsName = self.fontDescription.render(str(counter) + "s", 1, (255,255,255))
+		self.screen.blit(self.secondsName, (375, 300))
+		pygame.display.flip()
+		
 
 class Portuguese:
 	def __init__(self, screen, settingsMenu):
@@ -8,10 +42,13 @@ class Portuguese:
 		self.surface = pygame.Surface((795, 411))
 		self.settingsMenu = settingsMenu
 
-	def start(self):
 		self.fontPortuguese = pygame.font.Font("./Fonts/Kengo.ttf", 62)
 		self.fontDescription = pygame.font.SysFont("monospace", 25)
 
+		global counter
+		counter = self.settingsMenu.timeValue
+
+	def start(self):
 		self.portugueseName = self.fontPortuguese.render("Portuguese", 1, (255,69,0))
 		self.descriptionName = self.fontDescription.render("The game will ask for the kanjis, in portuguese", 1, (255,255,255))
 
@@ -23,13 +60,7 @@ class Portuguese:
 		pygame.display.flip()
 		time.sleep(3)
 
-		self.portugueseName = self.fontPortuguese.render("Sorry!", 1, (255,0,0))
-		self.descriptionName = self.fontDescription.render("Game mode not implemented", 1, (255,255,255))
+		countDown = Timer(1, self.screen)
+		countDown.start()
 
-		self.surface.fill((0,0,0))
-		self.screen.blit(self.surface, [0,0])
-
-		self.screen.blit(self.portugueseName, (300, 100))
-		self.screen.blit(self.descriptionName, (215, 200))
-		pygame.display.flip()
-		time.sleep(3)
+		countDown.join()

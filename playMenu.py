@@ -21,10 +21,6 @@ class Play:
 		self.japaneseName = self.fontItens.render("Japanese", 1, (255,255,255))
 		self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
-		self.karuta = Karuta(self.screen, self.settingsMenu)
-		self.portuguese = Portuguese(self.screen, self.settingsMenu)
-		self.japanese = Japanese(self.screen, self.settingsMenu)
-
 	def draw(self):
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -76,14 +72,18 @@ class Play:
 			self.draw()
 
 	def selectItem(self):
+		karuta = Karuta(self.screen, self.settingsMenu)
+		portuguese = Portuguese(self.screen, self.settingsMenu)
+		japanese = Japanese(self.screen, self.settingsMenu)
+
 		if self.currtentItem == 1:
-			self.karuta.start()
+			karuta.start()
 			self.draw()
 		elif self.currtentItem == 2:
-			self.portuguese.start()
+			portuguese.start()
 			self.draw()
 		elif self.currtentItem == 3:
-			self.japanese.start()
+			japanese.start()
 			self.draw()
 		elif self.currtentItem == 4:
 			return True

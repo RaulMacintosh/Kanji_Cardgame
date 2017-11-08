@@ -2,9 +2,12 @@ import pygame
 import time
 from threading import Thread
 from settingsMenu import *
+from random import randint
 
 counter = 5
 lifes = 3
+kanjisNumber = 5
+fileName = "./Files/portuguese_easy.txt"
 
 class Timer(Thread):
 	def __init__(self, num, screen):
@@ -28,7 +31,13 @@ class Timer(Thread):
 		self.screen.blit(self.surface, [0,0])
 		
 		self.heart = pygame.image.load('./Images/heart.png')
-		self.kanjiName = self.fontDescription.render("AMOR", 1, (255,255,255))
+
+		file = open(fileName, "r")
+		kanji = ""
+		for x in range(1,(randint(1, kanjisNumber)+1)):
+			kanji = file.readline()
+
+		self.kanjiName = self.fontDescription.render(kanji, 1, (255,255,255))
 		self.screen.blit(self.kanjiName, (360, 150))
 
 		self.secondsName = self.fontDescription.render(str(counter) + "s", 1, (255,255,255))
@@ -58,7 +67,18 @@ class Portuguese:
 		self.fontDescription = pygame.font.SysFont("monospace", 25)
 
 		global counter
+		global kanjisNumber
+		global fileName
+		
 		counter = self.settingsMenu.timeValue
+		kanjisNumber = 5 * self.settingsMenu.radioCurrentSelected
+
+		if kanjisNumber == 5:
+			fileName = "./Files/portuguese_easy.txt"
+		elif kanjisNumber == 10:
+			fileName = "./Files/portuguese_normal.txt"
+		elif kanjisNumber == 15:
+			fileName = "./Files/portuguese_hard.txt"
 
 	def start(self):
 		self.portugueseName = self.fontPortuguese.render("Portuguese", 1, (255,69,0))

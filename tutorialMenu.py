@@ -16,7 +16,7 @@ class Tutorial:
 		self.description3Name = self.fontDescription.render("reader.", 1, (255,255,255))
 		self.backName = self.fontDescription.render("Back", 1, (0,100,0))
 
-		#self.rfidCard = pygame.image.load('./Images/rfidCard.gif')
+		self.rfidCard = pygame.image.load('./Images/rfidCard.png')
 
 	def draw(self):
 		self.surface.fill((0,0,0))
@@ -28,4 +28,4 @@ class Tutorial:
 		self.screen.blit(self.description2Name, (30, 225))
 		self.screen.blit(self.description3Name, (30, 250))
 		self.screen.blit(self.backName, (700, 350))
-		#self.screen.blit(self.rfidCard, (450, 225))
+		self.screen.blit(self.rfidCard, (425, 125))

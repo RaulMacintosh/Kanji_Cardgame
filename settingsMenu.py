@@ -39,7 +39,6 @@ class Settings:
 			sound = pygame.mixer.Sound("./Sounds/Sound_level.wav")
 		elif idSound == 2:
 			sound = pygame.mixer.Sound("./Sounds/Difficulty_level.wav")
-			time.sleep(1)
 		elif idSound == 3:
 			sound = pygame.mixer.Sound("./Sounds/Time_to_find_the_Kanji.wav")
 		elif idSound == 4:
@@ -47,6 +46,9 @@ class Settings:
 
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
+
+		if idSound == 2:
+			time.sleep(1)
 
 	def playRadioSound(self, idSound):
 		sound = pygame.mixer.Sound("./Sounds/Easy.wav")
@@ -149,9 +151,9 @@ class Settings:
 		elif self.radioCurrentSelected == 3:
 			self.hardRadio = unichr(0x25C9)
 			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (0,100,0))
-
-		self.playRadioSound(self.radioCurrentSelected)
+		
 		self.draw()
+		self.playRadioSound(self.radioCurrentSelected)
 
 	def timeLeft(self):
 		if self.timeValue == 5:
@@ -221,8 +223,8 @@ class Settings:
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
 
-			self.playSound(self.currtentItem)
 			self.draw()
+			self.playSound(self.currtentItem)
 
 	def itemDown(self):
 		if self.currtentItem == 4:
@@ -257,8 +259,8 @@ class Settings:
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
 
-			self.playSound(self.currtentItem)
 			self.draw()
+			self.playSound(self.currtentItem)
 
 	def selectItem(self):
 		if self.currtentItem == 4:

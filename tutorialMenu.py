@@ -30,6 +30,7 @@ class Tutorial:
 		self.screen.blit(self.description3Name, (30, 250))
 		self.screen.blit(self.backName, (700, 350))
 		self.screen.blit(self.rfidCard, (425, 125))
+		pygame.display.flip()
 
 		sound = pygame.mixer.Sound("./Sounds/Put_the_card_over_the_Kanji_reader.wav")
 		sound.set_volume(0.8)

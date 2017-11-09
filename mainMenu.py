@@ -44,7 +44,6 @@ class Menu:
 
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
-		#pygame.mixer.Channel(1).play(sound, 0)
 
 	def draw(self):
 		self.surface.fill((0,0,0))

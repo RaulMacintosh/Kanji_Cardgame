@@ -32,6 +32,22 @@ class Settings:
 
 		self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
+		self.playSound(1)
+
+	def playSound(self, idSound):
+		sound = pygame.mixer.Sound("./Sounds/Sound_level.wav")
+		if idSound == 1:
+			sound = pygame.mixer.Sound("./Sounds/Sound_level.wav")
+		elif idSound == 2:
+			sound = pygame.mixer.Sound("./Sounds/Difficulty_level.wav")
+		elif idSound == 3:
+			sound = pygame.mixer.Sound("./Sounds/Time_to_find_the_Kanji.wav")
+		elif idSound == 4:
+			sound = pygame.mixer.Sound("./Sounds/Back.wav")
+
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
+
 	def draw(self):		
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -191,6 +207,7 @@ class Settings:
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
 
+			self.playSound(self.currtentItem)
 			self.draw()
 
 	def itemDown(self):
@@ -226,6 +243,7 @@ class Settings:
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
 
+			self.playSound(self.currtentItem)
 			self.draw()
 
 	def selectItem(self):

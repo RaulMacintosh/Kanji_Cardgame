@@ -27,6 +27,30 @@ class Menu:
 		self.tutorialMenu = Tutorial(self.screen)
 		self.playMenu = Play(self.screen, self.settingsMenu)
 
+		self.playSound(1)
+
+	def playSound(self, idSound):
+		if idSound == 1:
+			pygame.mixer.music.load("./Sounds/Play.mp3")
+			pygame.mixer.music.play(0)
+			pygame.mixer.music.set_volume(0.8)
+		elif idSound == 2:
+			pygame.mixer.music.load("./Sounds/Tutorial.mp3")
+			pygame.mixer.music.play(0)
+			pygame.mixer.music.set_volume(0.8)
+		elif idSound == 3:
+			pygame.mixer.music.load("./Sounds/Settings.mp3")
+			pygame.mixer.music.play(0)
+			pygame.mixer.music.set_volume(0.8)
+		elif idSound == 4:
+			pygame.mixer.music.load("./Sounds/About.mp3")
+			pygame.mixer.music.play(0)
+			pygame.mixer.music.set_volume(0.8)
+		elif idSound == 5:
+			pygame.mixer.music.load("./Sounds/Exit.mp3")
+			pygame.mixer.music.play(0)
+			pygame.mixer.music.set_volume(0.8)
+
 	def draw(self):
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -62,6 +86,7 @@ class Menu:
 			elif self.currtentItem == 5:
 				self.sairName = self.fontItens.render("Exit", 1, (0,100,0))
 
+			self.playSound(self.currtentItem)
 			self.draw()
 
 	def itemDown(self):
@@ -86,6 +111,7 @@ class Menu:
 			elif self.currtentItem == 5:
 				self.sairName = self.fontItens.render("Exit", 1, (0,100,0))
 
+			self.playSound(self.currtentItem)
 			self.draw()
 
 	def selectItem(self):

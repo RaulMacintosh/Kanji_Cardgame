@@ -249,10 +249,10 @@ class Settings:
 			elif self.currtentItem == 2:
 				if self.radioCurrentSelected == 1 or self.radioCurrentSelected == 2:
 					self.radioCurrentSelected += 1
-					self.radioLeft()
+					self.radioLeft(False)
 				else:
 					self.radioCurrentSelected -= 1
-					self.radioRight()
+					self.radioRight(False)
 			elif self.currtentItem == 3:
 				self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
 			elif self.currtentItem == 4:

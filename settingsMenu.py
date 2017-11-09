@@ -7,6 +7,7 @@ class Settings:
 		self.surface = pygame.Surface((795, 411))
 
 		self.soundBar = unichr(0x25AE) + unichr(0x25AE) + unichr(0x25AE) + unichr(0x25AE) + unichr(0x25AE) + unichr(0x25AF) + unichr(0x25AF) + unichr(0x25AF) + unichr(0x25AF) + unichr(0x25AF)
+		self.soundLevel = 0.5
 		self.easyRadio = unichr(0x25C9)
 		self.normalRadio = unichr(0x25CB)
 		self.hardRadio = unichr(0x25CB)
@@ -59,6 +60,11 @@ class Settings:
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
 
+	def playSoundLevelSound(self):
+		sound = pygame.mixer.Sound("./Sounds/Tap.wav")
+		sound.set_volume(self.soundLevel)
+		pygame.mixer.Sound.play(sound)
+
 	def draw(self):		
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -84,11 +90,14 @@ class Settings:
 
 			if x > 0 and char == unichr(0x25AF):
 				self.soundBar = self.soundBar[:x-1] + unichr(0x25AF) + self.soundBar[x:]
+				self.soundLevel -= 0.1
 				break
 			if x == 9:
 				self.soundBar = self.soundBar[:x] + unichr(0x25AF)
+				self.soundLevel -= 0.1
 
 		self.draw()
+		self.playSoundLevelSound()
 
 	def soundRight(self):
 		for x in range(0,10):
@@ -96,11 +105,14 @@ class Settings:
 
 			if x < 10 and char == unichr(0x25AF):
 				self.soundBar = self.soundBar[:x] + unichr(0x25AE) + self.soundBar[x+1:]
+				self.soundLevel += 0.1
 				break
 			if x == 0 and char == unichr(0x25AF):
 				self.soundBar[x] = unichr(0x25AE)
+				self.soundLevel += 0.1
 
 		self.draw()
+		self.playSoundLevelSound()
 
 	def radioLeft(self, sound):
 		self.easyRadio = unichr(0x25CB)

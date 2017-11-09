@@ -27,20 +27,20 @@ class Menu:
 		self.tutorialMenu = Tutorial(self.screen)
 		self.playMenu = Play(self.screen, self.settingsMenu)
 
-		#self.playSound(1)
+		self.playSound(1)
 
 	def playSound(self, idSound):
-		sound = pygame.mixer.Sound("./Sounds/background.mp3")
+		sound = pygame.mixer.Sound("./Sounds/Play.wav")
 		if idSound == 1:
-			sound = pygame.mixer.Sound("./Sounds/Play.mp3")
+			sound = pygame.mixer.Sound("./Sounds/Play.wav")
 		elif idSound == 2:
-			sound = pygame.mixer.Sound("./Sounds/Tutorial.mp3")
+			sound = pygame.mixer.Sound("./Sounds/Tutorial.wav")
 		elif idSound == 3:
-			sound = pygame.mixer.Sound("./Sounds/Settings.mp3")
+			sound = pygame.mixer.Sound("./Sounds/Settings.wav")
 		elif idSound == 4:
 			sound = pygame.mixer.Sound("./Sounds/About.wav")
 		elif idSound == 5:
-			sound = pygame.mixer.Sound("./Sounds/Exit.mp3")
+			sound = pygame.mixer.Sound("./Sounds/Exit.wav")
 
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)

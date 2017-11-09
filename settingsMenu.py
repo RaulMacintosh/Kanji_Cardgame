@@ -1,4 +1,5 @@
 import pygame
+import time
 
 class Settings:
 	def __init__(self, screen):
@@ -38,6 +39,7 @@ class Settings:
 			sound = pygame.mixer.Sound("./Sounds/Sound_level.wav")
 		elif idSound == 2:
 			sound = pygame.mixer.Sound("./Sounds/Difficulty_level.wav")
+			time.sleep(1)
 		elif idSound == 3:
 			sound = pygame.mixer.Sound("./Sounds/Time_to_find_the_Kanji.wav")
 		elif idSound == 4:

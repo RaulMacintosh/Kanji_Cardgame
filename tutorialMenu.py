@@ -20,13 +20,6 @@ class Tutorial:
 		self.rfidCard = pygame.image.load('./Images/rfidCard.png')
 
 	def draw(self):
-		sound = pygame.mixer.Sound("./Sounds/Put_the_card_over_the_Kanji_reader.wav")
-		sound.set_volume(0.8)
-		pygame.mixer.Sound.play(sound)
-		time.sleep(1)
-		sound = pygame.mixer.Sound("./Sounds/Back.wav")
-		pygame.mixer.Sound.play(sound)
-
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
 
@@ -37,3 +30,10 @@ class Tutorial:
 		self.screen.blit(self.description3Name, (30, 250))
 		self.screen.blit(self.backName, (700, 350))
 		self.screen.blit(self.rfidCard, (425, 125))
+
+		sound = pygame.mixer.Sound("./Sounds/Put_the_card_over_the_Kanji_reader.wav")
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
+		time.sleep(4)
+		sound = pygame.mixer.Sound("./Sounds/Back.wav")
+		pygame.mixer.Sound.play(sound)

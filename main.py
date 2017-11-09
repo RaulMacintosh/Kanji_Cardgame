@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
 import pygame
 from mainMenu import *
+from threading import Thread
+
+class BackgroundSong(Thread):
+	def __init__(self):
+		Thread.__init__(self)
+
+	def run(self):
+		pygame.mixer.music.load("./Sounds/background.mp3")
+		pygame.mixer.music.play(-1)
+		pygame.mixer.music.set_volume(0.5)
 
 pygame.init()
 pygame.display.set_caption('Kanji - Cardgame')
@@ -10,6 +20,11 @@ done = False
 
 menu = Menu(screen)
 menu.draw()
+
+song = BackgroundSong()
+song.start()
+
+#countDown.join()
 
 while not done:
 	for event in pygame.event.get():

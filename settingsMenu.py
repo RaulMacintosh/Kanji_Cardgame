@@ -47,9 +47,6 @@ class Settings:
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
 
-		if idSound == 2:
-			time.sleep(1)
-
 	def playRadioSound(self, idSound):
 		sound = pygame.mixer.Sound("./Sounds/Easy.wav")
 		if idSound == 1:
@@ -105,7 +102,7 @@ class Settings:
 
 		self.draw()
 
-	def radioLeft(self):
+	def radioLeft(self, sound):
 		self.easyRadio = unichr(0x25CB)
 		self.normalRadio = unichr(0x25CB)
 		self.hardRadio = unichr(0x25CB)
@@ -127,10 +124,11 @@ class Settings:
 			self.radioCurrentSelected -= 1
 			self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (0,100,0))
 
-		self.playRadioSound(self.radioCurrentSelected)
 		self.draw()
+		if sound:
+			self.playRadioSound(self.radioCurrentSelected)
 
-	def radioRight(self):
+	def radioRight(self, sound):
 		self.easyRadio = unichr(0x25CB)
 		self.normalRadio = unichr(0x25CB)
 		self.hardRadio = unichr(0x25CB)
@@ -153,7 +151,8 @@ class Settings:
 			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (0,100,0))
 		
 		self.draw()
-		self.playRadioSound(self.radioCurrentSelected)
+		if sound:
+			self.playRadioSound(self.radioCurrentSelected)
 
 	def timeLeft(self):
 		if self.timeValue == 5:
@@ -172,7 +171,7 @@ class Settings:
 			self.soundLeft()
 			self.soundBarName = self.fontItens.render(self.soundBar, 1, (0,100,0))
 		elif self.currtentItem == 2:
-			self.radioLeft()
+			self.radioLeft(True)
 		elif self.currtentItem == 3:
 			self.timeLeft()
 			self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
@@ -184,7 +183,7 @@ class Settings:
 			self.soundRight()
 			self.soundBarName = self.fontItens.render(self.soundBar, 1, (0,100,0))
 		elif self.currtentItem == 2:
-			self.radioRight()
+			self.radioRight(True)
 		elif self.currtentItem == 3:
 			self.timeRight()
 			self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
@@ -214,10 +213,10 @@ class Settings:
 			elif self.currtentItem == 2:
 				if self.radioCurrentSelected == 1 or self.radioCurrentSelected == 2:
 					self.radioCurrentSelected += 1
-					self.radioLeft()
+					self.radioLeft(False)
 				else:
 					self.radioCurrentSelected -= 1
-					self.radioRight()
+					self.radioRight(False)
 			elif self.currtentItem == 3:
 				self.secondsName = self.fontItens.render(str(self.timeValue) + "s", 1, (0,100,0))
 			elif self.currtentItem == 4:

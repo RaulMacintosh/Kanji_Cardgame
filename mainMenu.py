@@ -27,7 +27,7 @@ class Menu:
 		self.tutorialMenu = Tutorial(self.screen)
 		self.playMenu = Play(self.screen, self.settingsMenu)
 
-		self.playSound(1)
+		#self.playSound(1)
 
 	def playSound(self, idSound):
 		sound = pygame.mixer.Sound("./Sounds/background.mp3")

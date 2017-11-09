@@ -10,7 +10,7 @@ class BackgroundSong(Thread):
 	def run(self):
 		sound = pygame.mixer.music.load("./Sounds/background.mp3")
 		#sound.set_volume(0.2)
-		pygame.mixer.Channel(0).set_volume(0.2, 0.2)
+		pygame.mixer.Channel(0).set_volume(1, 1)
 		pygame.mixer.Channel(0).play(sound, -1)
 
 		# pygame.mixer.music.load("./Sounds/background.mp3")
@@ -28,8 +28,6 @@ menu.draw()
 
 song = BackgroundSong()
 song.start()
-
-#countDown.join()
 
 while not done:
 	for event in pygame.event.get():

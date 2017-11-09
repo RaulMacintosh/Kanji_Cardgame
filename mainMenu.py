@@ -30,26 +30,20 @@ class Menu:
 		self.playSound(1)
 
 	def playSound(self, idSound):
+		sound = pygame.mixer.Sound("./Sounds/background.mp3")
 		if idSound == 1:
-			pygame.mixer.music.load("./Sounds/Play.mp3")
-			pygame.mixer.music.play(0)
-			pygame.mixer.music.set_volume(0.8)
+			sound = pygame.mixer.Sound("./Sounds/Play.mp3")
 		elif idSound == 2:
-			pygame.mixer.music.load("./Sounds/Tutorial.mp3")
-			pygame.mixer.music.play(0)
-			pygame.mixer.music.set_volume(0.8)
+			sound = pygame.mixer.Sound("./Sounds/Tutorial.mp3")
 		elif idSound == 3:
-			pygame.mixer.music.load("./Sounds/Settings.mp3")
-			pygame.mixer.music.play(0)
-			pygame.mixer.music.set_volume(0.8)
+			sound = pygame.mixer.Sound("./Sounds/Settings.mp3")
 		elif idSound == 4:
-			pygame.mixer.music.load("./Sounds/About.mp3")
-			pygame.mixer.music.play(0)
-			pygame.mixer.music.set_volume(0.8)
+			sound = pygame.mixer.Sound("./Sounds/About.mp3")
 		elif idSound == 5:
-			pygame.mixer.music.load("./Sounds/Exit.mp3")
-			pygame.mixer.music.play(0)
-			pygame.mixer.music.set_volume(0.8)
+			sound = pygame.mixer.Sound("./Sounds/Exit.mp3")
+
+		sound.set_volume(0.8)
+		pygame.mixer.Channel(1).play(sound, 0)
 
 	def draw(self):
 		self.surface.fill((0,0,0))

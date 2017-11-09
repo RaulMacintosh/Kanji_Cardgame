@@ -8,9 +8,12 @@ class BackgroundSong(Thread):
 		Thread.__init__(self)
 
 	def run(self):
-		pygame.mixer.music.load("./Sounds/background.mp3")
-		pygame.mixer.music.play(-1)
-		pygame.mixer.music.set_volume(0.2)
+		sound = pygame.mixer.Sound("./Sounds/background.mp3")
+		sound.set_volume(0.2)
+		pygame.mixer.Channel(0).play(sound, -1)
+		# pygame.mixer.music.load("./Sounds/background.mp3")
+		#pygame.mixer.music.play(-1)
+		#pygame.mixer.music.set_volume(0.2)
 
 pygame.init()
 pygame.display.set_caption('Kanji - Cardgame')

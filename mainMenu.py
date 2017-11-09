@@ -38,7 +38,7 @@ class Menu:
 		elif idSound == 3:
 			sound = pygame.mixer.Sound("./Sounds/Settings.mp3")
 		elif idSound == 4:
-			sound = pygame.mixer.Sound("./Sounds/About.mp3")
+			sound = pygame.mixer.Sound("./Sounds/About.wav")
 		elif idSound == 5:
 			sound = pygame.mixer.Sound("./Sounds/Exit.mp3")
 

@@ -1,4 +1,5 @@
 import pygame
+import time
 
 class Tutorial:
 	def __init__(self, screen):
@@ -25,7 +26,7 @@ class Tutorial:
 		time.sleep(1)
 		sound = pygame.mixer.Sound("./Sounds/Back.wav")
 		pygame.mixer.Sound.play(sound)
-		
+
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
 

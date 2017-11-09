@@ -1,5 +1,4 @@
 import pygame
-import time
 
 class Settings:
 	def __init__(self, screen):

@@ -9,8 +9,10 @@ class BackgroundSong(Thread):
 
 	def run(self):
 		sound = pygame.mixer.music.load("./Sounds/background.mp3")
-		sound.set_volume(0.2)
+		#sound.set_volume(0.2)
+		pygame.mixer.Channel(0).set_volume(0.2, 0.2)
 		pygame.mixer.Channel(0).play(sound, -1)
+
 		# pygame.mixer.music.load("./Sounds/background.mp3")
 		#pygame.mixer.music.play(-1)
 		#pygame.mixer.music.set_volume(0.2)

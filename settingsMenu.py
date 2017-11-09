@@ -32,8 +32,6 @@ class Settings:
 
 		self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
-		self.playSound(1)
-
 	def playSound(self, idSound):
 		sound = pygame.mixer.Sound("./Sounds/Sound_level.wav")
 		if idSound == 1:
@@ -44,6 +42,18 @@ class Settings:
 			sound = pygame.mixer.Sound("./Sounds/Time_to_find_the_Kanji.wav")
 		elif idSound == 4:
 			sound = pygame.mixer.Sound("./Sounds/Back.wav")
+
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
+
+	def playRadioSound(self, idSound):
+		sound = pygame.mixer.Sound("./Sounds/Easy.wav")
+		if idSound == 1:
+			sound = pygame.mixer.Sound("./Sounds/Easy.wav")
+		elif idSound == 2:
+			sound = pygame.mixer.Sound("./Sounds/Normal.wav")
+		elif idSound == 3:
+			sound = pygame.mixer.Sound("./Sounds/Hard.wav")
 
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
@@ -113,6 +123,7 @@ class Settings:
 			self.radioCurrentSelected -= 1
 			self.normalRadioName = self.fontItens.render(self.normalRadio, 1, (0,100,0))
 
+		self.playRadioSound(self.radioCurrentSelected)
 		self.draw()
 
 	def radioRight(self):
@@ -137,6 +148,7 @@ class Settings:
 			self.hardRadio = unichr(0x25C9)
 			self.hardRadioName = self.fontItens.render(self.hardRadio, 1, (0,100,0))
 
+		self.playRadioSound(self.radioCurrentSelected)
 		self.draw()
 
 	def timeLeft(self):

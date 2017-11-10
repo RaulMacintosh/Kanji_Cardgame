@@ -95,7 +95,6 @@ class Settings:
 				self.soundBar = self.soundBar[:x] + unichr(0x25AF)
 
 		self.draw()
-		self.playSoundLevelSound()
 
 	def soundRight(self):
 		for x in range(0,10):

@@ -2,6 +2,17 @@ import pygame
 from settingsMenu import *
 from tutorialMenu import *
 from playMenu import *
+from threading import Thread
+
+class BackgroundSong(Thread):
+	def __init__(self, settings):
+		Thread.__init__(self)
+		self.settings = settings
+
+	def run(self):
+		pygame.mixer.music.load("./Sounds/background.mp3")
+		pygame.mixer.music.play(-1)
+		pygame.mixer.music.set_volume(self.settings.soundLevel)
 
 class Menu:
 	def __init__(self, screen):
@@ -26,6 +37,9 @@ class Menu:
 		self.settingsMenu = Settings(self.screen)
 		self.tutorialMenu = Tutorial(self.screen)
 		self.playMenu = Play(self.screen, self.settingsMenu)
+		
+		song = BackgroundSong(self.settingsMenu)
+		song.start()
 
 		self.playSound(1)
 
@@ -42,7 +56,7 @@ class Menu:
 		elif idSound == 5:
 			sound = pygame.mixer.Sound("./Sounds/Exit.wav")
 
-		sound.set_volume(0.8)
+		sound.set_volume(self.settingsMenu.soundLevel)
 		pygame.mixer.Sound.play(sound)
 
 	def draw(self):

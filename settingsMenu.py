@@ -45,7 +45,7 @@ class Settings:
 		elif idSound == 4:
 			sound = pygame.mixer.Sound("./Sounds/Back.wav")
 
-		sound.set_volume(0.8)
+		sound.set_volume(self.soundLevel)
 		pygame.mixer.Sound.play(sound)
 
 	def playRadioSound(self, idSound):
@@ -57,7 +57,7 @@ class Settings:
 		elif idSound == 3:
 			sound = pygame.mixer.Sound("./Sounds/Hard.wav")
 
-		sound.set_volume(0.8)
+		sound.set_volume(self.soundLevel)
 		pygame.mixer.Sound.play(sound)
 
 	def playSoundLevelSound(self):

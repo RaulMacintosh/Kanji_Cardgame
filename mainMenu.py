@@ -2,16 +2,6 @@ import pygame
 from settingsMenu import *
 from tutorialMenu import *
 from playMenu import *
-from threading import Thread
-
-class BackgroundSong(Thread):
-	def __init__(self):
-		Thread.__init__(self)
-
-	def run(self):
-		pygame.mixer.music.load("./Sounds/background.mp3")
-		pygame.mixer.music.play(-1)
-		pygame.mixer.music.set_volume(0.2)
 
 class Menu:
 	def __init__(self, screen):
@@ -36,9 +26,6 @@ class Menu:
 		self.settingsMenu = Settings(self.screen)
 		self.tutorialMenu = Tutorial(self.screen)
 		self.playMenu = Play(self.screen, self.settingsMenu)
-		
-		song = BackgroundSong()
-		song.start()
 
 		self.playSound(1)
 

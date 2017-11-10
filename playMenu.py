@@ -21,6 +21,20 @@ class Play:
 		self.japaneseName = self.fontItens.render("Japanese", 1, (255,255,255))
 		self.backName = self.fontItens.render("Back", 1, (255,255,255))
 
+	def playSound(self, idSound):
+		sound = pygame.mixer.Sound("./Sounds/Karuta.wav")
+		if idSound == 1:
+			sound = pygame.mixer.Sound("./Sounds/Karuta.wav")
+		elif idSound == 2:
+			sound = pygame.mixer.Sound("./Sounds/Portuguese.wav")
+		elif idSound == 3:
+			sound = pygame.mixer.Sound("./Sounds/Japanese.wav")
+		elif idSound == 4:
+			sound = pygame.mixer.Sound("./Sounds/Back.wav")
+
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
+
 	def draw(self):
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -49,7 +63,9 @@ class Play:
 				self.japaneseName = self.fontItens.render("Japanese", 1, (0,100,0))
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
+
 			self.draw()
+			self.playSound(self.currtentItem)
 
 	def itemDown(self):
 		if self.currtentItem == 4:
@@ -69,7 +85,9 @@ class Play:
 				self.japaneseName = self.fontItens.render("Japanese", 1, (0,100,0))
 			elif self.currtentItem == 4:
 				self.backName = self.fontItens.render("Back", 1, (0,100,0))
+
 			self.draw()
+			self.playSound(self.currtentItem)
 
 	def selectItem(self):
 		karuta = Karuta(self.screen, self.settingsMenu)

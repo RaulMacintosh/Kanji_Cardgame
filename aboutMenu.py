@@ -10,9 +10,9 @@ class About:
 		self.fontDescription = pygame.font.SysFont("monospace", 18)
 
 		self.aboutName = self.fontAbout.render("About", 1, (255,69,0))
-		self.descriptionName = self.fontDescription.render("This game was designed on Information Technology undergraduate course", 1, (255,255,255))
-		self.description2Name = self.fontDescription.render("of the Federal University of Rio Grande do Norte - Brazil, for the course of", 1, (255,255,255))
-		self.description3Name = self.fontDescription.render("Human-Computer Interaction.", 1, (255,255,255))
+		self.descriptionName = self.fontDescription.render("This game was designed on Information Technology undergraduate", 1, (255,255,255))
+		self.description2Name = self.fontDescription.render("course of the Federal University of Rio Grande do Norte - Brazil,", 1, (255,255,255))
+		self.description3Name = self.fontDescription.render("for the course of Human-Computer Interaction.", 1, (255,255,255))
 		self.description4Name = self.fontDescription.render("Student: Raul Silveira Silva", 1, (255,255,255))
 		self.description5Name = self.fontDescription.render("Mentor: Dr. Leonardo Cunha de Miranda", 1, (255,255,255))
 		self.backName = self.fontDescription.render("Back", 1, (0,100,0))

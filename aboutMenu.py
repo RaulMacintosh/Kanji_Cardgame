@@ -7,7 +7,7 @@ class About:
 		self.surface = pygame.Surface((795, 411))
 
 		self.fontAbout = pygame.font.Font("./Fonts/Kengo.ttf", 52)
-		self.fontDescription = pygame.font.SysFont("monospace", 20)
+		self.fontDescription = pygame.font.SysFont("monospace", 18)
 
 		self.aboutName = self.fontAbout.render("About", 1, (255,69,0))
 		self.descriptionName = self.fontDescription.render("This game was designed on Information Technology undergraduate course", 1, (255,255,255))

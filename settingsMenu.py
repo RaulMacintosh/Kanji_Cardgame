@@ -65,6 +65,11 @@ class Settings:
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
 
+	def playTimeSound(self):
+		sound = pygame.mixer.Sound("./Sounds/" + str(self.timeValue) + "_seconds.wav")
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
+
 	def draw(self):		
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -166,11 +171,15 @@ class Settings:
 		else:
 			self.timeValue -= 1
 
+		self.playTimeSound()
+
 	def timeRight(self):
 		if self.timeValue == 30:
 			pass
 		else:
 			self.timeValue += 1
+
+		self.playTimeSound()
 
 	def itemLeft(self):
 		if self.currtentItem == 1:

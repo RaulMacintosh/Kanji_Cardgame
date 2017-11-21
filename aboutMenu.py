@@ -21,7 +21,7 @@ class About:
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
 
-		self.screen.blit(self.aboutName, (275, 50))
+		self.screen.blit(self.aboutName, (280, 50))
 		self.screen.blit(self.descriptionName, (30, 200))
 		self.screen.blit(self.description2Name, (30, 225))
 		self.screen.blit(self.description3Name, (30, 250))

@@ -2,6 +2,7 @@ import pygame
 from settingsMenu import *
 from tutorialMenu import *
 from playMenu import *
+from aboutMenu import *
 
 class Menu:
 	def __init__(self, screen):
@@ -26,6 +27,7 @@ class Menu:
 		self.settingsMenu = Settings(self.screen)
 		self.tutorialMenu = Tutorial(self.screen)
 		self.playMenu = Play(self.screen, self.settingsMenu)
+		self.aboutMenu = About(self.screen)
 
 		self.playSound(1)
 
@@ -154,7 +156,16 @@ class Menu:
 
 				pygame.display.flip()
 			self.draw()
-		# elif self.currtentItem == 4:
-		# 	self.sobreName = self.fontItens.render("About", 1, (0,100,0))
+		elif self.currtentItem == 4:
+			self.aboutMenu.draw()
+			done = False
+			while not done:
+				for event in pygame.event.get():
+					if event.type == pygame.KEYDOWN:
+						if event.key == pygame.K_RETURN:
+							done = True
+
+				pygame.display.flip()
+			self.draw()
 		elif self.currtentItem == 5:
 			return True

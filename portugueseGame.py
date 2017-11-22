@@ -102,7 +102,7 @@ class Portuguese:
 		for x in range(1,(randint(1, kanjisNumber)+1)):
 			kanji = file.readline()
 
-		countDown = Timer(1, self.screen, kanji)
+		countDown = Timer(1, self.screen, kanji.rstrip())
 		countDown.start()
 
 		countDown.join()
@@ -125,5 +125,5 @@ class Portuguese:
 
 				self.screen.blit(self.gameOver, (250, 175))
 				pygame.display.flip()
-				time.sleep(1)
+				time.sleep(2)
 				lifes = 3

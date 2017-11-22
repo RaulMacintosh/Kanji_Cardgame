@@ -24,7 +24,7 @@ class Japanese:
 		self.screen.blit(self.japaneseName, (240, 100))
 		self.screen.blit(self.descriptionName, (70, 200))
 		pygame.display.flip()
-		time.sleep(3)
+		time.sleep(4)
 
 		self.japaneseName = self.fontJapanese.render("Sorry!", 1, (255,0,0))
 		self.descriptionName = self.fontDescription.render("Game mode not implemented", 1, (255,255,255))

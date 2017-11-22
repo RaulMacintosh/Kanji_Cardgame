@@ -10,10 +10,11 @@ kanjisNumber = 5
 fileName = "./Files/portuguese_easy.txt"
 
 class Timer(Thread):
-	def __init__(self, num, screen):
+	def __init__(self, num, screen, kanji):
 		Thread.__init__(self)
 		self.num = num
 		self.screen = screen
+		self.kanji = kanji
 		self.surface = pygame.Surface((795, 411))
 
 		self.fontDescription = pygame.font.SysFont("monospace", 25)
@@ -21,21 +22,20 @@ class Timer(Thread):
 	def run(self):
 		global counter
 		while counter >= 0:
-			self.draw()
+			if counter == 5:
+				sound = pygame.mixer.Sound("./Sounds/5_seconds_remaining.wav")
+				sound.set_volume(0.8)
+				pygame.mixer.Sound.play(sound)
+			self.draw(self.kanji)
 			time.sleep(1)
 			counter -= 1
 
 
-	def draw(self):
+	def draw(self, kanji):
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
 		
 		self.heart = pygame.image.load('./Images/heart.png')
-
-		file = open(fileName, "r")
-		kanji = ""
-		for x in range(1,(randint(1, kanjisNumber)+1)):
-			kanji = file.readline()
 
 		self.kanjiName = self.fontDescription.render(kanji, 1, (255,255,255))
 		self.screen.blit(self.kanjiName, (360, 150))
@@ -93,11 +93,16 @@ class Portuguese:
 		self.screen.blit(self.portugueseName, (215, 100))
 		self.screen.blit(self.descriptionName, (40, 200))
 		pygame.display.flip()
-		time.sleep(3)
+		time.sleep(4)
 		self.play()
 
 	def play(self):
-		countDown = Timer(1, self.screen)
+		file = open(fileName, "r")
+		kanji = ""
+		for x in range(1,(randint(1, kanjisNumber)+1)):
+			kanji = file.readline()
+
+		countDown = Timer(1, self.screen, kanji)
 		countDown.start()
 
 		countDown.join()
@@ -111,6 +116,9 @@ class Portuguese:
 				self.play()
 			if lifes == 0:
 				self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))
+				sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
+				sound.set_volume(0.8)
+				pygame.mixer.Sound.play(sound)
 
 				self.surface.fill((0,0,0))
 				self.screen.blit(self.surface, [0,0])

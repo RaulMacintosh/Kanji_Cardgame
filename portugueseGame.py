@@ -83,6 +83,9 @@ class Portuguese:
 	def start(self):
 		self.portugueseName = self.fontPortuguese.render("Portuguese", 1, (255,69,0))
 		self.descriptionName = self.fontDescription.render("The game will ask for the kanjis, in portuguese", 1, (255,255,255))
+		sound = pygame.mixer.Sound("./Sounds/Portuguese_instructions.wav")
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
 
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])

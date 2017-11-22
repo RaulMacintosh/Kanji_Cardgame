@@ -14,6 +14,9 @@ class Karuta:
 
 		self.karutaName = self.fontKaruta.render("Karuta", 1, (255,69,0))
 		self.descriptionName = self.fontDescription.render("Game with unlimited time", 1, (255,255,255))
+		sound = pygame.mixer.Sound("./Sounds/Karuta_instructions.wav")
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
 
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])
@@ -25,6 +28,9 @@ class Karuta:
 
 		self.karutaName = self.fontKaruta.render("Sorry!", 1, (255,0,0))
 		self.descriptionName = self.fontDescription.render("Game mode not implemented", 1, (255,255,255))
+		sound = pygame.mixer.Sound("./Sounds/Undone.wav")
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
 
 		self.surface.fill((0,0,0))
 		self.screen.blit(self.surface, [0,0])

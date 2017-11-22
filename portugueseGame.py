@@ -103,8 +103,8 @@ class Portuguese:
 			kanji = file.readline()
 
 		sound = pygame.mixer.Sound("./Sounds/" + kanji.rstrip() + ".wav")
-				sound.set_volume(0.8)
-				pygame.mixer.Sound.play(sound)
+		sound.set_volume(0.8)
+		pygame.mixer.Sound.play(sound)
 
 		countDown = Timer(1, self.screen, kanji.rstrip())
 		countDown.start()

@@ -36,12 +36,15 @@ class CardReader(Thread):
 					uid = ':'.join(['%X' % x for x in uid])
 					if uid == self.kanjiId:
 						kanjiFounded = 1
+						GPIO.cleanup()
 						break
 					else:
 						kanjiFounded = 2
+						GPIO.cleanup()
 						break
 
 			time.sleep(.25)
+		GPIO.cleanup()
 
 class Timer(Thread):
 	def __init__(self, num, screen, kanji):

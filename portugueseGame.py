@@ -41,13 +41,12 @@ class CardReader(Thread):
 					uid = ':'.join(['%X' % x for x in uid])
 					if uid == self.kanjiId:
 						kanjiFounded = 1
-						return
+						break
 					else:
-						if uid == pastUid:
+						if uid != pastUid:
 							pastUid = uid
-						else:
 							kanjiFounded = 2
-							return
+							break
 
 			time.sleep(.25)
 

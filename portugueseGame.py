@@ -171,36 +171,6 @@ class Portuguese:
 		global counter
 		global kanjiFounded
 
-		if kanjiFounded == 2:
-			kanjiFounded = 0
-			lifes -= 1
-			if lifes > 0:
-				self.play(kanji)
-		elif kanjiFounded == 1:
-			kanjiFounded = 0
-			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
-			counter = self.settingsMenu.timeValue
-			self.surface.fill((0,0,0))
-			self.screen.blit(self.surface, [0,0])
-
-			self.screen.blit(self.gameOver, (250, 175))
-			pygame.display.flip()
-			time.sleep(2)
-
-			file = open(fileName, "r")
-			kanji = ""
-			for x in range(1,(randint(1, kanjisNumber)+1)):
-				kanji = file.readline()
-			file.close()
-
-			self.play(kanji)
-
-		if counter <= 0:
-			lifes -= 1
-			if lifes > 0:
-				counter = self.settingsMenu.timeValue
-				self.play(kanji)
-
 		if lifes <= 0:
 			self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))
 			sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
@@ -214,3 +184,33 @@ class Portuguese:
 			pygame.display.flip()
 			time.sleep(2)
 			lifes = 3
+		else:
+			if kanjiFounded == 2:
+				kanjiFounded = 0
+				lifes -= 1
+				if lifes > 0:
+					self.play(kanji)
+			elif kanjiFounded == 1:
+				kanjiFounded = 0
+				self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
+				counter = self.settingsMenu.timeValue
+				self.surface.fill((0,0,0))
+				self.screen.blit(self.surface, [0,0])
+
+				self.screen.blit(self.gameOver, (250, 175))
+				pygame.display.flip()
+				time.sleep(2)
+
+				file = open(fileName, "r")
+				kanji = ""
+				for x in range(1,(randint(1, kanjisNumber)+1)):
+					kanji = file.readline()
+				file.close()
+
+				self.play(kanji)
+			else:
+				if counter <= 0:
+					lifes -= 1
+					if lifes > 0:
+						counter = self.settingsMenu.timeValue
+						self.play(kanji)

@@ -23,10 +23,9 @@ class CardReader(Thread):
 
 		for line in file:
 			for word in line.split():
+				print(word)
 				if word == cardName:
 					kanjiId = line.split()[1]
-
-		print('Esperado: %s' % self.kanjiId.rstrip())
 
 	def run(self):
 		while counter > 0:
@@ -38,6 +37,7 @@ class CardReader(Thread):
 				if status == self.rfidReader.MI_OK:
 					uid = ':'.join(['%X' % x for x in uid])
 					print('UID do cartão: %s' % uid)
+					print('Esperado: %s' % self.kanjiId.rstrip())
 					if uid == self.kanjiId.rstrip():
 						kanjiFounded = 1
 					else:

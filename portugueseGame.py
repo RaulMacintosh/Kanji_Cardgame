@@ -16,6 +16,7 @@ fileName = "./Files/portuguese_easy.txt"
 
 class CardReader(Thread):
 	def __init__(self, cardName):
+		Thread.__init__(self)
 		file = open("./Files/cardIds.txt", "r")
 		self.kanjiId = ""
 		self.rfidReader = MFRC522.MFRC522()

@@ -23,8 +23,8 @@ class CardReader(Thread):
 
 		for line in file:
 			for word in line.split():
-				print(word)
 				if word == cardName:
+					print(word)
 					kanjiId = line.split()[1]
 
 	def run(self):

@@ -43,7 +43,7 @@ class CardReader(Thread):
 						kanjiFounded = 1
 						break
 					else:
-						if uid != pastUid:
+						if uid == pastUid:
 							pastUid = uid
 						else:
 							kanjiFounded = 2

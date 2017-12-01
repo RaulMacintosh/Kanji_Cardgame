@@ -37,7 +37,7 @@ class CardReader(Thread):
 					uid = ':'.join(['%X' % x for x in uid])
 					# print('UID do cartão: %s' % uid)
 					# print('Esperado: %s' % self.kanjiId.rstrip())
-					if uid === self.kanjiId.rstrip():
+					if uid is self.kanjiId.rstrip():
 						print("AQUI")
 						kanjiFounded = 1
 					else:

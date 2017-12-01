@@ -27,6 +27,8 @@ class CardReader(Thread):
 					self.kanjiId = line.split()[1]
 
 	def run(self):
+		global kanjiFounded
+
 		while counter > 0:
 			status, tag_type = self.rfidReader.MFRC522_Request(self.rfidReader.PICC_REQIDL)
 

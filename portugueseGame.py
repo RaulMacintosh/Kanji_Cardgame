@@ -41,6 +41,7 @@ class CardReader(Thread):
 					else:
 						kanjiFounded = 2
 						break
+					GPIO.cleanup()
 
 			time.sleep(.25)
 
@@ -60,7 +61,6 @@ class Timer(Thread):
 
 		kanjiFounded = 0
 
-		GPIO.cleanup()
 		cardReader = CardReader(self.kanji)
 		cardReader.start()
 

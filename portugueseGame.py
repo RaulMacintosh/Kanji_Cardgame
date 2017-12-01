@@ -40,6 +40,7 @@ class CardReader(Thread):
 				if status == self.rfidReader.MI_OK:
 					uid = ':'.join(['%X' % x for x in uid])
 					if uid != pastUid:
+						pastUid = uid
 						if uid == self.kanjiId:
 							kanjiFounded = 1
 						else:

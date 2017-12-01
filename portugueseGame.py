@@ -1,13 +1,47 @@
+# -*- coding: utf8 -*-
+
 import pygame
 import time
+import MFRC522
+import RPi.GPIO as GPIO
 from threading import Thread
 from settingsMenu import *
 from random import randint
 
 counter = 5
+kanjiFounded = 0
 lifes = 3
 kanjisNumber = 5
 fileName = "./Files/portuguese_easy.txt"
+
+class CardReader(Thread):
+	def __init__(self, cardName):
+		file = open("./Files/cardIds.txt", "r")
+		self.kanjiId = ""
+		self.rfidReader = MFRC522.MFRC522()
+
+		for line in file:
+			for word in line.split():
+				if word == cardName:
+					kanjiId = line.split()[1]
+
+	def run(self):
+		while counter > 0:
+			status, tag_type = self.rfidReader.MFRC522_Request(self.rfidReader.PICC_REQIDL)
+
+			if status == self.rfidReader.MI_OK:
+				status, uid = self.rfidReader.MFRC522_Anticoll()
+
+				if status == self.rfidReader.MI_OK:
+					uid = ':'.join(['%X' % x for x in uid])
+					if uid == self.kanjiId:
+						kanjiFounded = 1
+						break
+					else:
+						kanjiFounded = 2
+						break
+
+			time.sleep(.25)
 
 class Timer(Thread):
 	def __init__(self, num, screen, kanji):
@@ -21,7 +55,19 @@ class Timer(Thread):
 
 	def run(self):
 		global counter
+		global kanjiFounded
+
+		kanjiFounded = 0
+
+		cardReader = CardReader(self.kanji)
+		cardReader.start()
+
+		# countDown.join()
+
 		while counter >= 0:
+			if kanjiFounded != 0:
+				break
+
 			if counter == 5:
 				sound = pygame.mixer.Sound("./Sounds/5_seconds_remaining.wav")
 				sound.set_volume(0.8)
@@ -94,14 +140,16 @@ class Portuguese:
 		self.screen.blit(self.descriptionName, (40, 200))
 		pygame.display.flip()
 		time.sleep(4)
-		self.play()
 
-	def play(self):
 		file = open(fileName, "r")
 		kanji = ""
 		for x in range(1,(randint(1, kanjisNumber)+1)):
 			kanji = file.readline()
+		file.close()
 
+		self.play(kanji)
+
+	def play(self, kanji):
 		sound = pygame.mixer.Sound("./Sounds/" + kanji.rstrip() + ".wav")
 		sound.set_volume(0.8)
 		pygame.mixer.Sound.play(sound)
@@ -113,21 +161,42 @@ class Portuguese:
 
 		global lifes
 		global counter
+
+		if kanjiFounded == 2:
+			kanjiFounded = 0
+			lifes -= 1
+			if lifes > 0:
+				self.play(kanji)
+
+		if kanjiFounded == 1:
+			self.gameOver = self.fontPortuguese.render("Excelent", 1, (255,0,0))
+			counter = self.settingsMenu.timeValue
+			time.sleep(2)
+
+			file = open(fileName, "r")
+			kanji = ""
+			for x in range(1,(randint(1, kanjisNumber)+1)):
+				kanji = file.readline()
+			file.close()
+
+			self.play(kanji)
+
 		if counter <= 0:
 			lifes -= 1
 			if lifes > 0:
 				counter = self.settingsMenu.timeValue
 				self.play()
-			if lifes == 0:
-				self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))
-				sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
-				sound.set_volume(0.8)
-				pygame.mixer.Sound.play(sound)
 
-				self.surface.fill((0,0,0))
-				self.screen.blit(self.surface, [0,0])
+		if lifes <= 0:
+			self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))
+			sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
+			sound.set_volume(0.8)
+			pygame.mixer.Sound.play(sound)
 
-				self.screen.blit(self.gameOver, (250, 175))
-				pygame.display.flip()
-				time.sleep(2)
-				lifes = 3
+			self.surface.fill((0,0,0))
+			self.screen.blit(self.surface, [0,0])
+
+			self.screen.blit(self.gameOver, (250, 175))
+			pygame.display.flip()
+			time.sleep(2)
+			lifes = 3

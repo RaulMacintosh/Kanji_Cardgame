@@ -35,13 +35,12 @@ class CardReader(Thread):
 
 				if status == self.rfidReader.MI_OK:
 					uid = ':'.join(['%X' % x for x in uid])
+					GPIO.cleanup()
 					if uid == self.kanjiId:
 						kanjiFounded = 1
-						break
 					else:
 						kanjiFounded = 2
-						break
-					GPIO.cleanup()
+					break
 
 			time.sleep(.25)
 

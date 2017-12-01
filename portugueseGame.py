@@ -35,7 +35,6 @@ class CardReader(Thread):
 
 				if status == self.rfidReader.MI_OK:
 					uid = ':'.join(['%X' % x for x in uid])
-					GPIO.cleanup()
 					if uid == self.kanjiId:
 						kanjiFounded = 1
 					else:
@@ -62,6 +61,7 @@ class Timer(Thread):
 
 		cardReader = CardReader(self.kanji)
 		cardReader.start()
+		GPIO.cleanup()
 
 		# countDown.join()
 

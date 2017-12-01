@@ -71,7 +71,6 @@ class Timer(Thread):
 
 		while counter >= 0:
 			if kanjiFounded != 0:
-				print("OI")
 				break
 
 			if counter == 5:
@@ -178,6 +177,11 @@ class Portuguese:
 		if kanjiFounded == 1:
 			self.gameOver = self.fontPortuguese.render("Excelent", 1, (255,0,0))
 			counter = self.settingsMenu.timeValue
+			self.surface.fill((0,0,0))
+			self.screen.blit(self.surface, [0,0])
+
+			self.screen.blit(self.gameOver, (250, 175))
+			pygame.display.flip()
 			time.sleep(2)
 
 			file = open(fileName, "r")

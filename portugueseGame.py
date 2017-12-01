@@ -45,7 +45,7 @@ class CardReader(Thread):
 						kanjiFounded = 2
 					break
 
-			time.sleep(.25)
+			time.sleep(.5)
 
 class Timer(Thread):
 	def __init__(self, num, screen, kanji):
@@ -175,7 +175,7 @@ class Portuguese:
 				self.play(kanji)
 
 		if kanjiFounded == 1:
-			self.gameOver = self.fontPortuguese.render("Excelent", 1, (255,0,0))
+			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
 			counter = self.settingsMenu.timeValue
 			self.surface.fill((0,0,0))
 			self.screen.blit(self.surface, [0,0])

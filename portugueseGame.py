@@ -13,6 +13,7 @@ kanjiFounded = 0
 lifes = 3
 kanjisNumber = 5
 fileName = "./Files/portuguese_easy.txt"
+pastUid = ""
 
 class CardReader(Thread):
 	def __init__(self, cardName):
@@ -28,6 +29,7 @@ class CardReader(Thread):
 
 	def run(self):
 		global kanjiFounded
+		global pastUid
 
 		while counter > 0:
 			status, tag_type = self.rfidReader.MFRC522_Request(self.rfidReader.PICC_REQIDL)
@@ -37,15 +39,14 @@ class CardReader(Thread):
 
 				if status == self.rfidReader.MI_OK:
 					uid = ':'.join(['%X' % x for x in uid])
-					# print('UID do cartão: %s' % uid)
-					# print('Esperado: %s' % self.kanjiId)
-					if uid == self.kanjiId:
-						kanjiFounded = 1
-					else:
-						kanjiFounded = 2
-					break
+					if uid != pastUid:
+						if uid == self.kanjiId:
+							kanjiFounded = 1
+						else:
+							kanjiFounded = 2
+						break
 
-			time.sleep(1)
+			time.sleep(.25)
 
 class Timer(Thread):
 	def __init__(self, num, screen, kanji):

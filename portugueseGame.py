@@ -161,6 +161,7 @@ class Portuguese:
 
 		global lifes
 		global counter
+		global kanjiFounded
 
 		if kanjiFounded == 2:
 			kanjiFounded = 0

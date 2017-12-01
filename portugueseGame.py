@@ -45,7 +45,7 @@ class CardReader(Thread):
 						kanjiFounded = 2
 					break
 
-			time.sleep(.5)
+			time.sleep(1)
 
 class Timer(Thread):
 	def __init__(self, num, screen, kanji):

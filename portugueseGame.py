@@ -190,7 +190,7 @@ class Portuguese:
 			lifes -= 1
 			if lifes > 0:
 				counter = self.settingsMenu.timeValue
-				self.play()
+				self.play(kanji)
 
 		if lifes <= 0:
 			self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))

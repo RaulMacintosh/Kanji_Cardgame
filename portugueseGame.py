@@ -177,6 +177,7 @@ class Portuguese:
 			if lifes > 0:
 				self.play(kanji)
 		elif kanjiFounded == 1:
+			kanjiFounded = 0
 			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
 			counter = self.settingsMenu.timeValue
 			self.surface.fill((0,0,0))
@@ -193,7 +194,7 @@ class Portuguese:
 			file.close()
 
 			self.play(kanji)
-		
+
 		if counter <= 0:
 			lifes -= 1
 			if lifes > 0:

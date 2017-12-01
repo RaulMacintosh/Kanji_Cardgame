@@ -38,7 +38,6 @@ class CardReader(Thread):
 					# print('UID do cartão: %s' % uid)
 					# print('Esperado: %s' % self.kanjiId)
 					if uid == self.kanjiId:
-						print("AQUI")
 						kanjiFounded = 1
 					else:
 						kanjiFounded = 2
@@ -70,6 +69,7 @@ class Timer(Thread):
 
 		while counter >= 0:
 			if kanjiFounded != 0:
+				print("OI")
 				break
 
 			if counter == 5:

@@ -190,7 +190,7 @@ class Portuguese:
 			self.screen.blit(self.surface, [0,0])
 
 			self.screen.blit(self.gameOver, (250, 50))
-			self.screen.blit(self.kanjiImg, (250, 100))
+			self.screen.blit(kanjiImg, (250, 100))
 			pygame.display.flip()
 			time.sleep(2)
 

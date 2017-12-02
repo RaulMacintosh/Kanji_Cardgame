@@ -179,11 +179,18 @@ class Portuguese:
 		elif kanjiFounded == 1:
 			kanjiFounded = 0
 			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
+			kanjiImg = pygame.image.load('./Images/kanji.png')
+
+			sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
+			sound.set_volume(0.8)
+			pygame.mixer.Sound.play(sound)
+
 			counter = self.settingsMenu.timeValue
 			self.surface.fill((0,0,0))
 			self.screen.blit(self.surface, [0,0])
 
-			self.screen.blit(self.gameOver, (250, 175))
+			self.screen.blit(self.gameOver, (250, 50))
+			self.screen.blit(self.kanjiImg, (250, 100))
 			pygame.display.flip()
 			time.sleep(2)
 

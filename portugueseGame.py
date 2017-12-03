@@ -233,8 +233,8 @@ class Portuguese:
 			self.screen.blit(self.surface, [0,0])
 
 			self.screen.blit(self.gameOver, (250, 175))
-			self.screen.blit(scoreName, (300, 250))
-			self.screen.blit(scoreValue, (325, 275))
+			self.screen.blit(scoreName, (400, 250))
+			self.screen.blit(scoreValue, (425, 275))
 			pygame.display.flip()
 			time.sleep(2)
 			lifes = 3

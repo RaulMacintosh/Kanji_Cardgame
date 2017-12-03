@@ -223,7 +223,7 @@ class Portuguese:
 		if lifes <= 0:
 			self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))
 			scoreName = self.fontPortuguese.render("Score", 1, (255,242,0))
-			scoreValue = self.fontDescription.render("" + score, 1, (255,242,0))
+			scoreValue = self.fontDescription.render(str(score), 1, (255,242,0))
 
 			sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
 			sound.set_volume(0.8)

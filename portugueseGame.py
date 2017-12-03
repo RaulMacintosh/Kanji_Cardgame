@@ -14,6 +14,7 @@ lifes = 3
 kanjisNumber = 5
 fileName = "./Files/portuguese_easy.txt"
 pastUid = ""
+score = 0
 
 class CardReader(Thread):
 	def __init__(self, cardName):
@@ -170,6 +171,7 @@ class Portuguese:
 		global lifes
 		global counter
 		global kanjiFounded
+		global score
 
 		if kanjiFounded == 2:
 			kanjiFounded = 0
@@ -182,6 +184,7 @@ class Portuguese:
 				self.play(kanji)
 		elif kanjiFounded == 1:
 			kanjiFounded = 0
+			score += 1
 			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
 			kanjiImg = pygame.image.load('./Kanjis/' + kanji.rstrip() + '.png')
 
@@ -219,6 +222,9 @@ class Portuguese:
 
 		if lifes <= 0:
 			self.gameOver = self.fontPortuguese.render("Game Over", 1, (255,0,0))
+			scoreName = self.fontPortuguese.render("Score", 1, (255,242,0))
+			scoreValue = self.fontDescription.render("" + score, 1, (255,242,0))
+
 			sound = pygame.mixer.Sound("./Sounds/Game_over.wav")
 			sound.set_volume(0.8)
 			pygame.mixer.Sound.play(sound)
@@ -227,6 +233,8 @@ class Portuguese:
 			self.screen.blit(self.surface, [0,0])
 
 			self.screen.blit(self.gameOver, (250, 175))
+			self.screen.blit(scoreName, (250, 225))
+			self.screen.blit(scoreValue, (250, 250))
 			pygame.display.flip()
 			time.sleep(2)
 			lifes = 3

@@ -87,9 +87,6 @@ class Timer(Thread):
 		self.kanjiName = self.fontDescription.render(kanji, 1, (255,255,255))
 		self.screen.blit(self.kanjiName, (360, 150))
 
-		self.secondsName = self.fontDescription.render(str(counter) + "s", 1, (255,255,255))
-		self.screen.blit(self.secondsName, (375, 300))
-
 		global lifes
 		if lifes == 1:
 			self.screen.blit(self.heart, (725, 20))

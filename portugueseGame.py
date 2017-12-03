@@ -235,3 +235,4 @@ class Portuguese:
 			pygame.display.flip()
 			time.sleep(2)
 			lifes = 3
+			score = 0

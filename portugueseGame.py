@@ -190,7 +190,7 @@ class Portuguese:
 			self.screen.blit(self.surface, [0,0])
 
 			self.screen.blit(self.gameOver, (250, 50))
-			self.screen.blit(kanjiImg, (250, 150))
+			self.screen.blit(kanjiImg, (300, 150))
 			pygame.display.flip()
 			
 			sound = pygame.mixer.Sound("./Sounds/excelent.wav")

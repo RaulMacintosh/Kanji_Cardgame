@@ -177,6 +177,7 @@ class Portuguese:
 			sound = pygame.mixer.Sound("./Sounds/wrong.wav")
 			sound.set_volume(0.8)
 			pygame.mixer.Sound.play(sound)
+			time.sleep(.5)
 			if lifes > 0:
 				self.play(kanji)
 		elif kanjiFounded == 1:

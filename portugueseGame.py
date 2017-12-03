@@ -183,7 +183,7 @@ class Portuguese:
 		elif kanjiFounded == 1:
 			kanjiFounded = 0
 			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
-			kanjiImg = pygame.image.load('./Images/kanji.png')
+			kanjiImg = pygame.image.load('./Kanjis/' + kanji.rstrip() + '.png')
 
 			counter = self.settingsMenu.timeValue
 			self.surface.fill((0,0,0))

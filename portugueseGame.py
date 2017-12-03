@@ -71,8 +71,6 @@ class Timer(Thread):
 		cardReader.start()
 		GPIO.cleanup()
 
-		# countDown.join()
-
 		while counter >= 0:
 			if kanjiFounded != 0:
 				break
@@ -110,7 +108,6 @@ class Timer(Thread):
 			self.screen.blit(self.heart, (635, 20))
 		
 		pygame.display.flip()
-		
 
 class Portuguese:
 	def __init__(self, screen, settingsMenu):

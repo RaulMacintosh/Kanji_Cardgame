@@ -177,22 +177,12 @@ class Portuguese:
 			sound = pygame.mixer.Sound("./Sounds/wrong.wav")
 			sound.set_volume(0.8)
 			pygame.mixer.Sound.play(sound)
-			time.sleep(.5)
 			if lifes > 0:
 				self.play(kanji)
 		elif kanjiFounded == 1:
 			kanjiFounded = 0
 			self.gameOver = self.fontPortuguese.render("Excelent", 1, (0,255,0))
 			kanjiImg = pygame.image.load('./Images/kanji.png')
-
-			sound = pygame.mixer.Sound("./Sounds/excelent.wav")
-			sound.set_volume(0.8)
-			pygame.mixer.Sound.play(sound)
-			time.sleep(.5)
-			sound = pygame.mixer.Sound("./Sounds/"+ kanji.rstrip() + "-kanji.wav")
-			sound.set_volume(0.8)
-			pygame.mixer.Sound.play(sound)
-			time.sleep(.5)
 
 			counter = self.settingsMenu.timeValue
 			self.surface.fill((0,0,0))
@@ -201,6 +191,15 @@ class Portuguese:
 			self.screen.blit(self.gameOver, (250, 50))
 			self.screen.blit(kanjiImg, (250, 150))
 			pygame.display.flip()
+			
+			sound = pygame.mixer.Sound("./Sounds/excelent.wav")
+			sound.set_volume(0.8)
+			pygame.mixer.Sound.play(sound)
+			time.sleep(1)
+			sound = pygame.mixer.Sound("./Sounds/"+ kanji.rstrip() + "-kanji.wav")
+			sound.set_volume(0.8)
+			pygame.mixer.Sound.play(sound)
+
 			time.sleep(2)
 
 			file = open(fileName, "r")
